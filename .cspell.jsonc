@@ -1,3 +1,4 @@
 {
-  "words": ["chacha", "ecies", "hkdf", "Keccak", "libsecp", "Secp", "xchacha"]
+  "words": ["Astar", "chacha", "ecies", "hkdf", "Keccak", "libsecp", "Secp", "xchacha"],
+  "ignorePaths": ["package.json"]
 }
