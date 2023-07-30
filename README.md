@@ -1,4 +1,4 @@
-# ink ecies
+# INK ECIES
 
 ECIES implementation in ink! contract with chain extension.
 
@@ -13,7 +13,7 @@ ECIES offers strong protection against eavesdropping and unauthorized access, ma
 
 ### ECIES
 
-Secp256k1 and XChaCha20-Poly1305 are used for asymmetric shared secret exchange and symmetric encryption/decryption. Compared to the popular AES-256-GCM, XChaCha20 is fast and constant-time without hardware acceleration (resistent to cache-timing attacks), and it also has longer nonce length.
+Secp256k1 and XChaCha20-Poly1305 are used for asymmetric shared secret exchange and symmetric encryption/decryption. Compared to the popular AES-256-GCM, XChaCha20 is fast and constant-time without hardware acceleration (resistant to cache-timing attacks), and it also has longer nonce length.
 
 Generally there are two steps:
 
