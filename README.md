@@ -18,7 +18,7 @@ Secp256k1 and XChaCha20-Poly1305 are used for asymmetric shared secret exchange 
 Generally there are two steps:
 
 1. The sender generates an ephemeral key pair, derives a shared secret with the recipient's public key and the ephemeral secret key. The sender encrypts the data with the shared secret under XChaCha20-Poly1305.
-2. The recipient derives with the shared secret with recipient's secret key and the ephemeral public key.
+2. The recipient derives the shared secret with the recipient's secret key and the ephemeral public key.
 
 The payload is as below:
 
@@ -34,16 +34,16 @@ The payload is as below:
 
 ### Chain extension
 
-Substrate chain extension allows developers to call function provided by the chain smart contracts. This feature enables us to implement ECIES in Astar, and call it in ink! contract. Note that Solidity won't support this feature.
+Substrate chain extension allows developers to call function provided by the chain in smart contracts. This feature enables us to implement ECIES in Astar, and call it in ink! contract. Solidity won't support this feature.
 
-Note that securely random bytes generation is a pretty difficult problem on blockchains, we have to use the insecure randomness pallet provided by substrate.
+Note that securely random bytes generation is a pretty challenging problem on blockchains, we have to use the insecure randomness pallet provided by substrate.
 
-We use the message as the seed to generate a nonce, then use the nonce as the seed to generate the ephemeral secret key to make it more random.
+We use the message as the seed to generate a nonce, then use the nonce as the seed to generate the ephemeral secret key to make it "more random".
 
 ```rust
-    let nonce_output = T::Randomness::random(&msg).0; //TODO: VRF
+    let nonce_output = T::Randomness::random(&msg).0; // TODO: VRF
     let nonce = nonce_output.encode();
 
-    let sk_output = T::Randomness::random(&nonce).0; //TODO: VRF
+    let sk_output = T::Randomness::random(&nonce).0; // TODO: VRF
     let sk = sk_output.encode();
 ```

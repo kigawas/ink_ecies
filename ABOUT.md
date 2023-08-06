@@ -10,7 +10,7 @@ There are not many cryptographic applications on Astar, because many cryptograph
 
 Challenges I ran into
 
-Random bytes generation. I used a trick to make the generated private cannot be computed directly, but it still needs verifiable random functions (VRF) on Astar or Substrate.
+Random bytes generation. I used a trick to make the generated private keys cannot be computed directly, but it still needs verifiable random functions (VRF) on Astar or Substrate.
 
 
 Technologies I used
