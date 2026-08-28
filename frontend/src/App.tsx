@@ -1,5 +1,6 @@
-import { ECIES_CONFIG, PrivateKey, PublicKey, decrypt, utils } from "eciesjs";
-import { useEffect, useMemo, useState } from "react";
+import { ECIES_CONFIG, PrivateKey, decrypt } from "eciesjs";
+import * as utils from "eciesjs/utils";
+import { useMemo, useState } from "react";
 import {
   Card,
   CardContent,
@@ -9,18 +10,15 @@ import {
 } from "./components/ui/card";
 import { Input } from "./components/ui/input";
 
+const decoder = new TextDecoder();
+
 ECIES_CONFIG.symmetricAlgorithm = "xchacha20";
 
 function App() {
   const sk = useMemo(() => new PrivateKey(), []);
-
-  const [pk, setPk] = useState<PublicKey | null>(null);
+  const pk = sk.publicKey;
   const [error, setError] = useState<string | null>(null);
   const [text, setText] = useState("");
-
-  useEffect(() => {
-    setPk(sk.publicKey);
-  }, [sk]);
 
   return (
     <main className="grid grid-cols-1 place-items-center max-w-8xl">
@@ -49,18 +47,15 @@ function App() {
               placeholder="Input encrypted data"
               type="text"
               onChange={(e) => {
-                const decoded = utils.decodeHex(e.target.value);
-
                 try {
+                  const decoded = utils.decodeHex(e.target.value);
                   const decrypted = decrypt(sk.toHex(), decoded);
-                  setText(decrypted.toString());
+                  setText(decoder.decode(decrypted));
                   setError(null);
                 } catch (e) {
-                  if (e instanceof Error) {
-                    setText("");
-                    setError("invalid input");
-                    console.error(e.message);
-                  }
+                  setText("");
+                  setError("invalid input");
+                  console.error(e);
                 }
               }}
             />
