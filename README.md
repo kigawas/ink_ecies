@@ -1,13 +1,12 @@
 # INK ECIES
 
-ECIES implementation in ink! contract with chain extension.
+ECIES implementation in ink! contract with [chain extension](https://github.com/kigawas/Astar/tree/ecies-ext/chain-extensions/ecies).
 
 ## ECIES in a nutshell
 
 ECIES (Elliptic Curve Integrated Encryption Scheme) is a hybrid encryption protocol that ensures secure data exchange. It combines symmetric encryption for efficiency and asymmetric encryption for enhanced security.
 
 ECIES offers strong protection against eavesdropping and unauthorized access, making it a competitive choice for secure communication over networks and in cryptographic applications.
-
 
 ## Technical details
 
